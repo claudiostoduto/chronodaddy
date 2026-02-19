@@ -1,0 +1,42 @@
+title: Chronodaddy
+tagline: Un papà appassionato di orologi
+description: "Portfolio dei contenuti video del canale YouTube Chronodaddy."
+url: ""  # GitHub Pages lo imposta automaticamente
+baseurl: ""  # se usi repository user/organization pages lascia vuoto
+
+# Branding
+logo_text: "CHRONODADDY"
+youtube_handle: "chronodaddy"
+contact_email: "chronodaddy@mrclaus.xyz"
+
+# Build
+markdown: kramdown
+permalink: /:categories/:year/:month/:day/:title/
+timezone: Europe/Rome
+
+# Collections (opzionale)
+collections:
+  pages:
+    output: true
+    permalink: /:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+
+# Exclude build artifacts / tooling
+exclude:
+  - node_modules
+  - scripts
+  - package.json
+  - package-lock.json
+  - README.md
+  - vendor
