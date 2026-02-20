@@ -4,7 +4,7 @@ date: 2026-01-25
 videoId: "Xflx552pipQ"
 youtubeUrl: "https://www.youtube.com/watch?v=Xflx552pipQ"
 thumbnail: "https://i1.ytimg.com/vi/Xflx552pipQ/hqdefault.jpg"
-tags: [youtube]
+tags: [Out Of Order]
 excerpt: "Una collezione completa con 3 microbrand italiani ⌚ HTD, Out Of Order e Officine Tecniche"
 ---
 

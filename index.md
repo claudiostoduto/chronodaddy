@@ -4,7 +4,7 @@ layout: default
 
 <div class="grid cols-2">
   <section class="card">
-    <h1 class="h1">Portfolio video · Chronodaddy</h1>
+    <h1 class="h1">Chronodaddy</h1>
     <p class="subtitle">
       Un papà appassionato di orologi. Qui trovi tutti i video pubblicati sul canale, in formato “post” condivisibili con aziende e brand.
     </p>

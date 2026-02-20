@@ -4,7 +4,7 @@ date: 2026-02-13
 videoId: "ru2zctUa-dM"
 youtubeUrl: "https://www.youtube.com/shorts/ru2zctUa-dM"
 thumbnail: "https://i3.ytimg.com/vi/ru2zctUa-dM/hqdefault.jpg"
-tags: [youtube]
+tags: [Hamilton]
 excerpt: "Hamilton Khaki Pilot Mechanical Pioneer Aviation Polso: 16,5 cm.#Orologi #WatchLover #WatchPorn"
 ---
 

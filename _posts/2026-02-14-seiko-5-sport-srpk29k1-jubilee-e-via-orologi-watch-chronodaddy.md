@@ -4,7 +4,7 @@ date: 2026-02-14
 videoId: "S_ns68dVxjs"
 youtubeUrl: "https://www.youtube.com/shorts/S_ns68dVxjs"
 thumbnail: "https://i4.ytimg.com/vi/S_ns68dVxjs/hqdefault.jpg"
-tags: [youtube]
+tags: [Seiko]
 excerpt: "Seiko 5 Sport SRPK29K1. Jubilee e via #orologi #watch #chronodaddy"
 ---
 

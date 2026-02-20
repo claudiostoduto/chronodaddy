@@ -4,7 +4,7 @@ date: 2026-01-18
 videoId: "deLAwHVyIkw"
 youtubeUrl: "https://www.youtube.com/watch?v=deLAwHVyIkw"
 thumbnail: "https://i1.ytimg.com/vi/deLAwHVyIkw/hqdefault.jpg"
-tags: [youtube]
+tags: [Fathers]
 excerpt: "Father Always Small Second - l'abbraccio Swiss Made di un papà"
 ---
 

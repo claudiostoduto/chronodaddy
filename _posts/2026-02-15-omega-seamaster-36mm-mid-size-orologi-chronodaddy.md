@@ -4,7 +4,7 @@ date: 2026-02-15
 videoId: "wXYa9FSAomg"
 youtubeUrl: "https://www.youtube.com/shorts/wXYa9FSAomg"
 thumbnail: "https://i4.ytimg.com/vi/wXYa9FSAomg/hqdefault.jpg"
-tags: [youtube]
+tags: [Omega]
 excerpt: "Omega Seamaster 36mm mid-size. #orologi #chronodaddy"
 ---
 

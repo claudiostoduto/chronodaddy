@@ -4,7 +4,7 @@ date: 2026-02-08
 videoId: "o2talsSb2lc"
 youtubeUrl: "https://www.youtube.com/watch?v=o2talsSb2lc"
 thumbnail: "https://i4.ytimg.com/vi/o2talsSb2lc/hqdefault.jpg"
-tags: [youtube]
+tags: [HTD]
 excerpt: "HTD Hesagraph Dollarone: finalmente mio!"
 ---
 

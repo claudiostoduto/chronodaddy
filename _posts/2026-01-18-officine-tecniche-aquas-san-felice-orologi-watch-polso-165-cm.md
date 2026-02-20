@@ -4,7 +4,7 @@ date: 2026-01-18
 videoId: "_iBQEEJXWDc"
 youtubeUrl: "https://www.youtube.com/shorts/_iBQEEJXWDc"
 thumbnail: "https://i4.ytimg.com/vi/_iBQEEJXWDc/hqdefault.jpg"
-tags: [youtube]
+tags: [Officine Tecniche]
 excerpt: "Officine tecniche Aquas San Felice. #orologi #watch polso 16,5 cm"
 ---
 

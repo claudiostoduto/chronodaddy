@@ -4,7 +4,7 @@ date: 2026-01-12
 videoId: "rBHZujCGF2A"
 youtubeUrl: "https://www.youtube.com/shorts/rBHZujCGF2A"
 thumbnail: "https://i3.ytimg.com/vi/rBHZujCGF2A/hqdefault.jpg"
-tags: [youtube]
+tags: [Omega]
 excerpt: "Omega Speedmaster reduced 39mm Polso: 16,5 cm #WatchLover #WatchPorn #LuxuryWatches"
 ---
 
