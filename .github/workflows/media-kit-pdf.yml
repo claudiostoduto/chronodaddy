@@ -1,0 +1,33 @@
+name: Build Media Kit PDF
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 6 * * 1"   # ogni lunedì 06:30 (Roma)
+
+permissions:
+  contents: write
+
+jobs:
+  pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install deps
+        run: npm install playwright
+
+      - name: Build PDF from site
+        run: node scripts/render-media-kit-pdf.mjs
+
+      - name: Commit PDF
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/media-kit.pdf
+          git diff --cached --quiet || git commit -m "chore: update media kit PDF"
+          git push
