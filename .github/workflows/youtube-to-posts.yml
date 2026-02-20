@@ -26,6 +26,12 @@ jobs:
           YT_CHANNEL_ID: ${{ secrets.YT_CHANNEL_ID }}
         run: node scripts/youtube-rss-to-posts.mjs
 
+      - name: Update channel stats
+        env:
+        YT_CHANNEL_ID: ${{ secrets.YT_CHANNEL_ID }}
+        YT_API_KEY: ${{ secrets.YT_API_KEY }}
+        run: node scripts/youtube-stats.mjs
+
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
@@ -33,3 +39,5 @@ jobs:
           git add .
           git diff --cached --quiet || git commit -m "chore: add new YouTube posts"
           git push
+
+
