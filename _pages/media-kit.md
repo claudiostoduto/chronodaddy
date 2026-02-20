@@ -44,6 +44,12 @@ permalink: /media-kit/
   </p>
 </div>
 
+<p style="margin-top:12px;">
+  <a class="btn" href="{{ '/assets/media-kit.pdf' | relative_url }}" target="_blank" rel="noopener">
+    Scarica Media Kit (PDF)
+  </a>
+</p>
+
 <script>
 (async function(){
   try{
