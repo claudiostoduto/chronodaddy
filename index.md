@@ -64,7 +64,8 @@ layout: default
   </section>
 
   <aside class="card">
-    <h2 style="margin:0 0 6px;">Per aziende</h2>
+  <img class="sidebar-logo" src="{{ site.logo_image | relative_url }}" alt="Chronodaddy">
+    <h2 style="margin:0 0 6px;">Per le aziende</h2>
     <p class="subtitle" style="margin-bottom:12px;">
       Se vuoi valutare una collaborazione, qui trovi una vista ordinata di contenuti e numeri.
     </p>
