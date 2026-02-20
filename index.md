@@ -6,7 +6,6 @@ layout: default
   <section class="card">
     <h1 class="h1">Chronodaddy</h1>
     <p class="subtitle">
-      Un papà appassionato di orologi. Qui trovi tutti i video pubblicati sul canale, in formato “post” condivisibili con aziende e brand.
     </p>
 
     <div class="kpi">
@@ -65,16 +64,11 @@ layout: default
 
   <aside class="card">
   <img class="sidebar-logo" src="{{ site.logo_image | relative_url }}" alt="Chronodaddy">
-    <h2 style="margin:0 0 6px;">Per le aziende</h2>
+    <h2 style="margin:0 0 6px;">Chi sono</h2>
     <p class="subtitle" style="margin-bottom:12px;">
-      Se vuoi valutare una collaborazione, qui trovi una vista ordinata di contenuti e numeri.
     </p>
-    <ul style="margin:0;padding-left:18px;color:var(--muted)">
-      <li>Post automatici per ogni nuovo video</li>
-      <li>Pagina portfolio con filtri per tag</li>
-      <li>Media kit con KPI aggiornabili</li>
-      <li>Contatti rapidi</li>
-    </ul>
+         Un papà appassionato di orologi. Qui trovi tutti i video pubblicati sul canale.
+
     <hr/>
     <p style="margin:0;">
       <a class="btn" href="{{ '/contatti/' | relative_url }}">Contattami</a>
