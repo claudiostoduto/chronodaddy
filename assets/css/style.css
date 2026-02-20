@@ -96,3 +96,12 @@ hr{border:0;border-top:1px solid var(--line);margin:18px 0}
   display:block;
   border-radius: 10px;
 }
+
+.sidebar-logo{
+  width: 160px;
+  max-width: 70%;
+  display:block;
+  margin: 4px auto 14px auto;
+  border-radius: 14px;
+  opacity: 0.95;
+}
