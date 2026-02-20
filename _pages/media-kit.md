@@ -7,7 +7,6 @@ permalink: /media-kit/
 <div class="card">
   <h2 style="margin:0 0 6px;">Numeri del canale</h2>
   <p class="subtitle">
-    Questa sezione può essere aggiornata automaticamente (opzionale) tramite workflow GitHub Actions che salva <code>assets/channel-stats.json</code>.
   </p>
 
   <div class="kpi">
