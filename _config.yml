@@ -8,6 +8,7 @@ baseurl: ""  # se usi repository user/organization pages lascia vuoto
 logo_text: "Chronodaddy"
 youtube_handle: "chronodaddy"
 contact_email: "chronodaddy@mrclaus.xyz"
+logo_image: "/assets/img/logo.jpg"
 
 # Build
 markdown: kramdown
