@@ -3,7 +3,7 @@ name: Build Media Kit PDF
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 6 * * 1"   # ogni lunedì 06:30 (Roma)
+    - cron: "30 6 * * 1"   # lunedì 06:30 (Roma)
 
 permissions:
   contents: write
@@ -18,10 +18,14 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Install deps
-        run: npm install playwright
+      - name: Install Playwright
+        run: |
+          npm install playwright
+          npx playwright install --with-deps chromium
 
-      - name: Build PDF from site
+      - name: Render PDF
+        env:
+          SITE_URL: https://chronodaddy.it
         run: node scripts/render-media-kit-pdf.mjs
 
       - name: Commit PDF
