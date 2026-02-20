@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 
 const siteUrl =
-  process.env.SITE_URL || "https://YOUR_DOMAIN_HERE"; // <-- metti il tuo dominio
+  process.env.SITE_URL || "https://chronodaddy.it"; // <-- metti il tuo dominio
 
 const target = new URL("/media-kit/", siteUrl).toString();
 const outPath = path.join(process.cwd(), "assets", "media-kit.pdf");
