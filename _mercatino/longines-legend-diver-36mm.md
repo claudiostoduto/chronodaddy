@@ -1,5 +1,5 @@
 ---
-title: "Longines Legend Diver"
+title: "Longines Legend Diver 36mm"
 layout: mercatino
 price: "1700,00 euro"
 status: "disponibile"   # disponibile | venduto
