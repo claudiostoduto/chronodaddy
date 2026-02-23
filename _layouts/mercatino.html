@@ -25,20 +25,73 @@ layout: default
   </header>
 
   <div class="merc-top">
-    <!-- Slider (CSS scroll snap) -->
-    <div class="merc-slider">
-      <div class="merc-track">
-        {% for img in page.gallery %}
-          <div class="merc-slide">
-            <img src="{{ img | relative_url }}" alt="">
-          </div>
-        {% endfor %}
+   <div class="merc-slider" data-slider>
+  <button class="merc-nav prev" type="button" aria-label="Foto precedente">‹</button>
+  <button class="merc-nav next" type="button" aria-label="Foto successiva">›</button>
+
+  <div class="merc-track" data-track>
+    {% for img in page.gallery %}
+      <div class="merc-slide" data-slide>
+        <img src="{{ img | relative_url }}" alt="">
       </div>
-      <div class="merc-dots">
-        {% for img in page.gallery %}
-          <a class="dot" href="#slide-{{ forloop.index }}"></a>
-        {% endfor %}
-      </div>
+    {% endfor %}
+  </div>
+
+  <div class="merc-dots" data-dots>
+    {% for img in page.gallery %}
+      <button class="dot" type="button" aria-label="Vai alla foto {{ forloop.index }}" data-dot="{{ forloop.index0 }}"></button>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+(function(){
+  const root = document.querySelector("[data-slider]");
+  if(!root) return;
+
+  const track = root.querySelector("[data-track]");
+  const slides = Array.from(root.querySelectorAll("[data-slide]"));
+  const dots = Array.from(root.querySelectorAll("[data-dot]"));
+  const prev = root.querySelector(".merc-nav.prev");
+  const next = root.querySelector(".merc-nav.next");
+
+  let index = 0;
+
+  function go(i){
+    index = Math.max(0, Math.min(slides.length - 1, i));
+    const left = slides[index].offsetLeft;
+    track.scrollTo({ left, behavior: "smooth" });
+
+    dots.forEach(d => d.classList.remove("is-active"));
+    if(dots[index]) dots[index].classList.add("is-active");
+  }
+
+  prev && prev.addEventListener("click", () => go(index - 1));
+  next && next.addEventListener("click", () => go(index + 1));
+
+  dots.forEach(d => {
+    d.addEventListener("click", () => go(Number(d.dataset.dot)));
+  });
+
+  // Aggiorna dot quando scrolli a mano (touch/trackpad)
+  let t;
+  track.addEventListener("scroll", () => {
+    clearTimeout(t);
+    t = setTimeout(() => {
+      const pos = track.scrollLeft;
+      let best = 0, bestDist = Infinity;
+      slides.forEach((s, i) => {
+        const dist = Math.abs(s.offsetLeft - pos);
+        if(dist < bestDist){ bestDist = dist; best = i; }
+      });
+      go(best);
+    }, 80);
+  }, { passive: true });
+
+  // init
+  go(0);
+})();
+</script>
     </div>
 
     <aside class="merc-info card">
