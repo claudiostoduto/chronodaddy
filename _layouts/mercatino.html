@@ -57,14 +57,32 @@ layout: default
 
   let index = 0;
 
-  function go(i){
+  function setDots(i){
+    dots.forEach(d => d.classList.remove("is-active"));
+    if(dots[i]) dots[i].classList.add("is-active");
+  }
+
+  function go(i, smooth=true){
     index = Math.max(0, Math.min(slides.length - 1, i));
     const left = slides[index].offsetLeft;
-    track.scrollTo({ left, behavior: "smooth" });
-
-    dots.forEach(d => d.classList.remove("is-active"));
-    if(dots[index]) dots[index].classList.add("is-active");
+    track.scrollTo({ left, behavior: smooth ? "smooth" : "auto" });
+    setDots(index);
   }
+
+  // IMPORTANTISSIMO: evita che il browser “ricordi” la slide precedente
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+
+  // Forza sempre la prima immagine all’apertura
+  track.scrollLeft = 0;
+  setDots(0);
+
+  // Dopo che la pagina è stabile, ri-forza la posizione (immagini caricate)
+  window.addEventListener("load", () => {
+    track.scrollLeft = 0;
+    go(0, false);
+  });
 
   prev && prev.addEventListener("click", () => go(index - 1));
   next && next.addEventListener("click", () => go(index + 1));
@@ -73,7 +91,7 @@ layout: default
     d.addEventListener("click", () => go(Number(d.dataset.dot)));
   });
 
-  // Aggiorna dot quando scrolli a mano (touch/trackpad)
+  // Scroll manuale (touch/trackpad): aggiorna solo i dots, NON riscrollare
   let t;
   track.addEventListener("scroll", () => {
     clearTimeout(t);
@@ -84,12 +102,10 @@ layout: default
         const dist = Math.abs(s.offsetLeft - pos);
         if(dist < bestDist){ bestDist = dist; best = i; }
       });
-      go(best);
+      index = best;
+      setDots(index);
     }, 80);
   }, { passive: true });
-
-  // init
-  go(0);
 })();
 </script>
     </div>
