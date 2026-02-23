@@ -20,8 +20,6 @@ collections:
   pages:
     output: true
     permalink: /:name/
-
-collections:
   mercatino:
     output: true
     permalink: /mercatino/:name/
