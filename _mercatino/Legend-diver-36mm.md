@@ -10,7 +10,7 @@ box_papers: "Full set"
 movement: "Automatico 7S26"
 diameter: "36mm"
 location: "Italia"
-cover: "/assets/mercatino/skx007-1.jpg"
+cover: "/assets/mercatino/longines-1.jpg"
 gallery:
   - "/assets/mercatino/longines-1.jpg"
   - "/assets/mercatino/longines-2.jpg"
