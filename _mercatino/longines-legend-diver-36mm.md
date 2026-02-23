@@ -7,7 +7,7 @@ date_added: 2026-02-23
 year: 2023
 condition: "Ottime condizioni"
 box_papers: "Full set"
-movement: "Automatico 7S26"
+movement: "Automatico L592"
 diameter: "36mm"
 location: "Italia"
 cover: "/assets/mercatino/longines-1.jpeg"
