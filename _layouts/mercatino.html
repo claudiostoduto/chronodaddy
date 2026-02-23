@@ -25,91 +25,27 @@ layout: default
   </header>
 
   <div class="merc-top">
-   <div class="merc-slider" data-slider>
-  <button class="merc-nav prev" type="button" aria-label="Foto precedente">‹</button>
-  <button class="merc-nav next" type="button" aria-label="Foto successiva">›</button>
+    <!-- SLIDER -->
+    <div class="merc-slider" data-slider>
+      <button class="merc-nav prev" type="button" aria-label="Foto precedente">‹</button>
+      <button class="merc-nav next" type="button" aria-label="Foto successiva">›</button>
 
-  <div class="merc-track" data-track>
-    {% for img in page.gallery %}
-      <div class="merc-slide" data-slide>
-        <img src="{{ img | relative_url }}" alt="">
+      <div class="merc-track" data-track>
+        {% for img in page.gallery %}
+          <div class="merc-slide" data-slide>
+            <img src="{{ img | relative_url }}" alt="{{ page.title | escape }}">
+          </div>
+        {% endfor %}
       </div>
-    {% endfor %}
-  </div>
 
-  <div class="merc-dots" data-dots>
-    {% for img in page.gallery %}
-      <button class="dot" type="button" aria-label="Vai alla foto {{ forloop.index }}" data-dot="{{ forloop.index0 }}"></button>
-    {% endfor %}
-  </div>
-</div>
-
-<script>
-(function(){
-  const root = document.querySelector("[data-slider]");
-  if(!root) return;
-
-  const track = root.querySelector("[data-track]");
-  const slides = Array.from(root.querySelectorAll("[data-slide]"));
-  const dots = Array.from(root.querySelectorAll("[data-dot]"));
-  const prev = root.querySelector(".merc-nav.prev");
-  const next = root.querySelector(".merc-nav.next");
-
-  let index = 0;
-
-  function setDots(i){
-    dots.forEach(d => d.classList.remove("is-active"));
-    if(dots[i]) dots[i].classList.add("is-active");
-  }
-
-  function go(i, smooth=true){
-    index = Math.max(0, Math.min(slides.length - 1, i));
-    const left = slides[index].offsetLeft;
-    track.scrollTo({ left, behavior: smooth ? "smooth" : "auto" });
-    setDots(index);
-  }
-
-  // IMPORTANTISSIMO: evita che il browser “ricordi” la slide precedente
-  if ("scrollRestoration" in history) {
-    history.scrollRestoration = "manual";
-  }
-
-  // Forza sempre la prima immagine all’apertura
-  track.scrollLeft = 0;
-  setDots(0);
-
-  // Dopo che la pagina è stabile, ri-forza la posizione (immagini caricate)
-  window.addEventListener("load", () => {
-    track.scrollLeft = 0;
-    go(0, false);
-  });
-
-  prev && prev.addEventListener("click", () => go(index - 1));
-  next && next.addEventListener("click", () => go(index + 1));
-
-  dots.forEach(d => {
-    d.addEventListener("click", () => go(Number(d.dataset.dot)));
-  });
-
-  // Scroll manuale (touch/trackpad): aggiorna solo i dots, NON riscrollare
-  let t;
-  track.addEventListener("scroll", () => {
-    clearTimeout(t);
-    t = setTimeout(() => {
-      const pos = track.scrollLeft;
-      let best = 0, bestDist = Infinity;
-      slides.forEach((s, i) => {
-        const dist = Math.abs(s.offsetLeft - pos);
-        if(dist < bestDist){ bestDist = dist; best = i; }
-      });
-      index = best;
-      setDots(index);
-    }, 80);
-  }, { passive: true });
-})();
-</script>
+      <div class="merc-dots" data-dots>
+        {% for img in page.gallery %}
+          <button class="dot" type="button" aria-label="Vai alla foto {{ forloop.index }}" data-dot="{{ forloop.index0 }}"></button>
+        {% endfor %}
+      </div>
     </div>
 
+    <!-- INFO -->
     <aside class="merc-info card">
       <div class="price-big">{{ page.price }}</div>
 
@@ -132,17 +68,20 @@ layout: default
           Richiedi info via Email
         </a>
 
+        <!-- B) WhatsApp -->
         <a class="btn ghost"
-   href="https://wa.me/393534883914?text={{ 'Ciao! Sono interessato a: ' | append: page.title | append: ' — Link: ' | append: site.url | append: page.url | uri_escape }}"
-   target="_blank" rel="noopener">
-   Scrivimi su WhatsApp
-</a>
+           href="https://wa.me/393534883914?text={{ 'Ciao! Sono interessato a: ' | append: page.title | append: ' — Link: ' | append: site.url | append: page.url | uri_escape }}"
+           target="_blank" rel="noopener">
+          Scrivimi su WhatsApp
+        </a>
 
-<a class="btn ghost"
-   href="{{ '/assets/certificati/' | relative_url }}{{ page.slug | default: page.name }}.pdf"
-   target="_blank" rel="noopener">
-  Scarica certificato (PDF)
-</a>
+        <!-- Certificato -->
+        <a class="btn ghost"
+           href="{{ '/assets/certificati/' | relative_url }}{{ page.slug | default: page.name }}.pdf"
+           target="_blank" rel="noopener">
+          Scarica certificato (PDF)
+        </a>
+      </div>
 
       <p class="meta" style="margin:12px 0 0;">
         *Vendita tra privati. Spedizione e modalità di pagamento da concordare.
@@ -153,4 +92,151 @@ layout: default
   <div class="merc-description content">
     {{ content }}
   </div>
+
+  <!-- LIGHTBOX (fullscreen) -->
+  <div class="lb" id="lb" aria-hidden="true">
+    <div class="lb-backdrop" data-lb-close></div>
+    <button class="lb-close" type="button" aria-label="Chiudi" data-lb-close>×</button>
+    <button class="lb-nav prev" type="button" aria-label="Precedente" id="lbPrev">‹</button>
+    <button class="lb-nav next" type="button" aria-label="Successiva" id="lbNext">›</button>
+    <img class="lb-img" id="lbImg" alt="" data-lb-close>
+  </div>
+
+  <script>
+  (function(){
+    const root = document.querySelector("[data-slider]");
+    if(!root) return;
+
+    const track = root.querySelector("[data-track]");
+    const slides = Array.from(root.querySelectorAll("[data-slide]"));
+    const dots = Array.from(root.querySelectorAll("[data-dot]"));
+    const prev = root.querySelector(".merc-nav.prev");
+    const next = root.querySelector(".merc-nav.next");
+
+    let index = 0;
+
+    function clamp(i){ return Math.max(0, Math.min(slides.length - 1, i)); }
+
+    function setDots(i){
+      dots.forEach(d => d.classList.remove("is-active"));
+      if(dots[i]) dots[i].classList.add("is-active");
+    }
+
+    function go(i, smooth=true){
+      index = clamp(i);
+      const left = slides[index].offsetLeft;
+      track.scrollTo({ left, behavior: smooth ? "smooth" : "auto" });
+      setDots(index);
+    }
+
+    // evita che il browser “ricordi” lo scroll
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+    // start sempre da 0
+    track.scrollLeft = 0;
+    setDots(0);
+    window.addEventListener("load", () => { track.scrollLeft = 0; go(0, false); });
+
+    prev && prev.addEventListener("click", () => go(index - 1));
+    next && next.addEventListener("click", () => go(index + 1));
+    dots.forEach(d => d.addEventListener("click", () => go(Number(d.dataset.dot))));
+
+    // Scroll manuale: aggiorna solo dots
+    let t;
+    track.addEventListener("scroll", () => {
+      clearTimeout(t);
+      t = setTimeout(() => {
+        const pos = track.scrollLeft;
+        let best = 0, bestDist = Infinity;
+        slides.forEach((s, i) => {
+          const dist = Math.abs(s.offsetLeft - pos);
+          if(dist < bestDist){ bestDist = dist; best = i; }
+        });
+        index = best;
+        setDots(index);
+      }, 80);
+    }, { passive: true });
+
+    // ===== Lightbox =====
+    const lb = document.getElementById("lb");
+    const lbImg = document.getElementById("lbImg");
+    const lbPrev = document.getElementById("lbPrev");
+    const lbNext = document.getElementById("lbNext");
+    const closeEls = Array.from(lb.querySelectorAll("[data-lb-close]"));
+
+    function openLB(i){
+      index = clamp(i);
+      const img = slides[index].querySelector("img");
+      lbImg.src = img.currentSrc || img.src;
+
+      lb.classList.add("is-open");
+      lb.setAttribute("aria-hidden", "false");
+      document.body.classList.add("no-scroll");
+      setDots(index);
+
+      // nascondi frecce se 1 sola immagine
+      if(slides.length <= 1){
+        lbPrev.style.display = "none";
+        lbNext.style.display = "none";
+      }else{
+        lbPrev.style.display = "";
+        lbNext.style.display = "";
+      }
+    }
+
+    function closeLB(){
+      lb.classList.remove("is-open");
+      lb.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("no-scroll");
+      lbImg.src = "";
+    }
+
+    slides.forEach((s, i) => {
+      s.style.cursor = "zoom-in";
+      s.addEventListener("click", () => openLB(i));
+    });
+
+    closeEls.forEach(el => el.addEventListener("click", closeLB));
+
+    lbPrev && lbPrev.addEventListener("click", () => openLB(index - 1));
+    lbNext && lbNext.addEventListener("click", () => openLB(index + 1));
+
+    document.addEventListener("keydown", (e) => {
+      if(!lb.classList.contains("is-open")) return;
+      if(e.key === "Escape") closeLB();
+      if(e.key === "ArrowLeft") openLB(index - 1);
+      if(e.key === "ArrowRight") openLB(index + 1);
+    });
+
+    // Swipe (mobile) nella lightbox
+    let startX = 0, startY = 0, dx = 0, dy = 0;
+
+    lb.addEventListener("touchstart", (e) => {
+      if(!lb.classList.contains("is-open")) return;
+      const t0 = e.touches[0];
+      startX = t0.clientX;
+      startY = t0.clientY;
+      dx = 0; dy = 0;
+    }, { passive: true });
+
+    lb.addEventListener("touchmove", (e) => {
+      if(!lb.classList.contains("is-open")) return;
+      const t0 = e.touches[0];
+      dx = t0.clientX - startX;
+      dy = t0.clientY - startY;
+    }, { passive: true });
+
+    lb.addEventListener("touchend", () => {
+      if(!lb.classList.contains("is-open")) return;
+      if(slides.length <= 1) return;
+
+      // se è più verticale che orizzontale -> ignora
+      if(Math.abs(dy) > Math.abs(dx)) return;
+
+      // soglia swipe
+      if(dx > 50) openLB(index - 1);
+      if(dx < -50) openLB(index + 1);
+    });
+  })();
+  </script>
 </article>
