@@ -1,0 +1,87 @@
+---
+layout: default
+---
+
+<article class="merc-single">
+  <header class="merc-head">
+    <h1>{{ page.title }}</h1>
+    <div class="meta">
+      {% if page.status == "venduto" %}
+        <span class="pill sold">Venduto</span>
+      {% else %}
+        <span class="pill available">Disponibile</span>
+      {% endif %}
+
+      {% if page.date_added %}
+        {% assign now_s = 'now' | date: '%s' %}
+        {% assign add_s = page.date_added | date: '%s' %}
+        {% assign diff = now_s | minus: add_s %}
+        {% assign days = diff | divided_by: 86400 %}
+        {% if days <= 14 %}
+          <span class="pill new">Nuovo</span>
+        {% endif %}
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="merc-top">
+    <!-- Slider (CSS scroll snap) -->
+    <div class="merc-slider">
+      <div class="merc-track">
+        {% for img in page.gallery %}
+          <div class="merc-slide">
+            <img src="{{ img | relative_url }}" alt="">
+          </div>
+        {% endfor %}
+      </div>
+      <div class="merc-dots">
+        {% for img in page.gallery %}
+          <a class="dot" href="#slide-{{ forloop.index }}"></a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <aside class="merc-info card">
+      <div class="price-big">{{ page.price }}</div>
+
+      {% if page.status == "venduto" %}
+        <div class="sold-label">VENDUTO</div>
+      {% endif %}
+
+      <ul class="specs">
+        {% if page.year %}<li><strong>Anno:</strong> {{ page.year }}</li>{% endif %}
+        {% if page.condition %}<li><strong>Condizione:</strong> {{ page.condition }}</li>{% endif %}
+        {% if page.movement %}<li><strong>Movimento:</strong> {{ page.movement }}</li>{% endif %}
+        {% if page.diameter %}<li><strong>Diametro:</strong> {{ page.diameter }}</li>{% endif %}
+        {% if page.box_papers %}<li><strong>Dotazione:</strong> {{ page.box_papers }}</li>{% endif %}
+        {% if page.location %}<li><strong>Posizione:</strong> {{ page.location }}</li>{% endif %}
+      </ul>
+
+      <div class="cta-stack">
+        <!-- A) Email -->
+        <a class="btn" href="mailto:chronodaddy@mrclaus.xyz?subject={{ 'Info Mercatino: ' | append: page.title | uri_escape }}">
+          Richiedi info via Email
+        </a>
+
+        <a class="btn ghost"
+   href="https://wa.me/393534883914?text={{ 'Ciao! Sono interessato a: ' | append: page.title | append: ' — Link: ' | append: site.url | append: page.url | uri_escape }}"
+   target="_blank" rel="noopener">
+   Scrivimi su WhatsApp
+</a>
+
+<a class="btn ghost"
+   href="{{ '/assets/certificati/' | relative_url }}{{ page.slug | default: page.name }}.pdf"
+   target="_blank" rel="noopener">
+  Scarica certificato (PDF)
+</a>
+
+      <p class="meta" style="margin:12px 0 0;">
+        *Vendita tra privati. Spedizione e modalità di pagamento da concordare.
+      </p>
+    </aside>
+  </div>
+
+  <div class="merc-description content">
+    {{ content }}
+  </div>
+</article>

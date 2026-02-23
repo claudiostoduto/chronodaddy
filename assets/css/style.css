@@ -105,3 +105,164 @@ hr{border:0;border-top:1px solid var(--line);margin:18px 0}
   border-radius: 14px;
   opacity: 0.95;
 }
+.merc-grid{
+  display:grid;
+  gap:18px;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+}
+
+.merc-card{
+  text-decoration:none;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--line);
+  border-radius:18px;
+  overflow:hidden;
+  transition:.2s;
+}
+.merc-card:hover{transform:translateY(-3px)}
+
+.merc-thumb{
+  position:relative;
+  height:220px;
+  overflow:hidden;
+}
+.merc-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.badge.sold{
+  position:absolute;
+  top:10px;
+  left:10px;
+  background:#b00020;
+  color:#fff;
+  padding:6px 10px;
+  border-radius:8px;
+  font-size:12px;
+  font-weight:700;
+}
+
+.price{font-weight:800;margin-top:6px}
+.price-big{font-size:28px;font-weight:800;margin-bottom:10px}
+
+.merc-top{
+  display:grid;
+  gap:20px;
+}
+@media(min-width:900px){
+  .merc-top{grid-template-columns:1.4fr .6fr}
+}
+
+.merc-gallery img{
+  width:100%;
+  border-radius:14px;
+  margin-bottom:10px;
+}
+
+.specs{
+  padding-left:16px;
+  color:var(--muted);
+}
+
+/* Filters */
+.filters{display:flex;gap:10px;flex-wrap:wrap}
+.filter-btn{
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--line);
+  color:var(--muted);
+  padding:10px 12px;
+  border-radius:999px;
+  cursor:pointer;
+}
+.filter-btn.is-active{
+  color:var(--text);
+  background:rgba(255,255,255,.06);
+  border-color:rgba(255,255,255,.18);
+}
+
+/* Badges */
+.badge.new{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background: var(--accent);
+  color:#191a1f;
+  padding:6px 10px;
+  border-radius:8px;
+  font-size:12px;
+  font-weight:900;
+}
+.pill{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  font-size:12px;
+  color:var(--muted);
+}
+.pill.available{color:#b9ffd0;border-color:rgba(185,255,208,.2)}
+.pill.sold{color:#ffb9c6;border-color:rgba(255,185,198,.2)}
+.pill.new{color:#191a1f;background:var(--accent);border-color:transparent}
+
+.merc-head{margin-bottom:12px}
+.merc-head .meta{display:flex;gap:8px;flex-wrap:wrap}
+
+/* Slider (no JS) */
+.merc-slider{
+  background:rgba(255,255,255,.02);
+  border:1px solid var(--line);
+  border-radius:18px;
+  overflow:hidden;
+}
+.merc-track{
+  display:flex;
+  gap:0;
+  overflow:auto;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.merc-slide{
+  flex:0 0 100%;
+  scroll-snap-align:start;
+}
+.merc-slide img{
+  width:100%;
+  height:420px;
+  object-fit:cover;
+  display:block;
+}
+@media(min-width:900px){
+  .merc-slide img{height:520px}
+}
+.merc-dots{
+  display:flex;
+  gap:8px;
+  padding:12px;
+  justify-content:center;
+  border-top:1px solid var(--line);
+}
+.dot{
+  width:10px;height:10px;border-radius:999px;
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.18);
+  display:inline-block;
+}
+.dot:hover{background:rgba(255,255,255,.35)}
+
+/* CTA stack */
+.cta-stack{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+
+/* Sold label on page */
+.sold-label{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:10px;
+  background:#b00020;
+  color:#fff;
+  font-weight:900;
+  font-size:12px;
+}
+
+.trust-card{padding:18px}
