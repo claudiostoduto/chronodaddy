@@ -1,0 +1,39 @@
+name: Mercatino → Certificates PDF
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "_mercatino/**"
+      - "scripts/generate-certificates.mjs"
+
+permissions:
+  contents: write
+
+jobs:
+  build-certs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install deps
+        run: |
+          npm install playwright js-yaml qrcode
+          npx playwright install --with-deps chromium
+
+      - name: Generate certificates
+        env:
+          SITE_URL: https://chronodaddy.it
+        run: node scripts/generate-certificates.mjs
+
+      - name: Commit PDFs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/certificati/*.pdf
+          git diff --cached --quiet || git commit -m "chore: update mercatino certificates"
+          git push
