@@ -1,7 +1,7 @@
 ---
 title: "Longines Legend Diver"
 layout: mercatino
-price: "1700"
+price: "1700,00 euro"
 status: "disponibile"   # disponibile | venduto
 date_added: 2026-02-23 
 year: 2023
