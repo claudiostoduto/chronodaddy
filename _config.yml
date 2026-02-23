@@ -21,6 +21,11 @@ collections:
     output: true
     permalink: /:name/
 
+collections:
+  mercatino:
+    output: true
+    permalink: /mercatino/:name/
+
 defaults:
   - scope:
       path: ""
@@ -41,3 +46,5 @@ exclude:
   - package-lock.json
   - README.md
   - vendor
+
+ 
