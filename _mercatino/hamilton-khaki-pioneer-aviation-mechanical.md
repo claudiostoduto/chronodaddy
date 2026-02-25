@@ -10,7 +10,7 @@ box_papers: "Full set"
 movement: "Automatio H-50"
 diameter: "36mm"
 location: "Italia"
-cover: "/assets/mercatino/hamilton-6.jpeg"
+cover: "/assets/mercatino/hamilton-1.jpeg"
 gallery:
   - "/assets/mercatino/hamilton-1.jpeg"
   - “/assets/mercatino/hamilton-2.jpeg”
