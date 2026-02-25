@@ -12,12 +12,12 @@ diameter: "36mm"
 location: "Italia"
 cover: "/assets/mercatino/hamilton-1.jpeg"
 gallery:
-  - “/assets/mercatino/hamilton-1.jpeg”
-  - “/assets/mercatino/hamilton-2.jpeg”
-  - “/assets/mercatino/hamilton-3.jpeg”
-  - “/assets/mercatino/hamilton-4.jpeg”
-  - “/assets/mercatino/hamilton-5.jpeg”
-  - “/assets/mercatino/hamilton-6.jpeg”  
+  - "/assets/mercatino/hamilton-1.jpeg"
+  - "/assets/mercatino/hamilton-2.jpeg"
+  - "/assets/mercatino/hamilton-3.jpeg"
+  - "/assets/mercatino/hamilton-4.jpeg"
+  - "/assets/mercatino/hamilton-5.jpeg"
+  - "/assets/mercatino/hamilton-6.jpeg"  
 slug: "hamilton-khaki-pioneer-aviation-mechanical"
 ---
 
