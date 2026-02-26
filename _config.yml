@@ -49,6 +49,12 @@ defaults:
     values:
       sitemap: false
 
+  - scope:
+      path: ""
+      type: blog
+    values:
+      layout: blog-post
+
 # Exclude build artifacts / tooling
 exclude:
   - node_modules

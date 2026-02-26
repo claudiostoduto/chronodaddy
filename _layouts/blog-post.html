@@ -1,0 +1,131 @@
+---
+layout: default
+---
+
+{%- comment -%} Reading time (stima) {%- endcomment -%}
+{% assign words = content | strip_html | number_of_words %}
+{% assign minutes = words | divided_by: 180 %}
+{% if minutes < 1 %}{% assign minutes = 1 %}{% endif %}
+
+{%- comment -%} Related posts (stessi tag) {%- endcomment -%}
+{% assign related = site.blog | where_exp: "p", "p.url != page.url" %}
+{% if page.tags and page.tags.size > 0 %}
+  {% assign related = related | where_exp: "p", "p.tags and p.tags.size > 0" %}
+{% endif %}
+
+<article class="card content">
+  <header style="margin-bottom:14px;">
+    <div class="meta" style="margin-bottom:8px;">
+      {{ page.date | date: "%-d %b %Y" }} · {{ minutes }} min lettura
+      {% if page.category %} · {{ page.category }}{% endif %}
+    </div>
+
+    <h1 class="h1" style="margin-bottom:6px;">{{ page.title }}</h1>
+
+    {% if page.subtitle %}
+      <p class="subtitle" style="margin:0 0 10px;">{{ page.subtitle }}</p>
+    {% endif %}
+
+    {% if page.thumbnail and page.thumbnail != "" %}
+      <div style="margin-top:12px;">
+        <img src="{{ page.thumbnail | relative_url }}" alt="{{ page.title | escape }}" style="width:100%;border-radius:16px;">
+      </div>
+    {% endif %}
+
+    {% if page.tags and page.tags.size > 0 %}
+      <div class="meta" style="margin-top:10px;">
+        {% for t in page.tags %}#{{ t }} {% endfor %}
+      </div>
+    {% endif %}
+  </header>
+
+  <div class="content">
+    {{ content }}
+  </div>
+
+  <hr/>
+
+  {%- comment -%} CTA Mercatino (opzionale) {%- endcomment -%}
+  {% if site.mercatino %}
+    {% assign available = site.mercatino | where_exp: "i", "i.status != 'venduto'" | sort: "date_added" | reverse %}
+    {% if available.size > 0 %}
+      <div class="card" style="padding:14px;">
+        <h2 style="margin:0 0 8px;">Dai un’occhiata al Mercatino</h2>
+        <p class="meta" style="margin:0 0 10px;">Gli ultimi annunci disponibili su Chronodaddy.</p>
+
+        <div class="post-list">
+          {% for item in available limit: 2 %}
+            <a class="post-item" href="{{ item.url | relative_url }}" style="text-decoration:none">
+              <div class="thumb">
+                {% if item.cover and item.cover != "" %}
+                  <img src="{{ item.cover | relative_url }}" alt="{{ item.title | escape }}">
+                {% elsif item.gallery and item.gallery.size > 0 %}
+                  <img src="{{ item.gallery[0] | relative_url }}" alt="{{ item.title | escape }}">
+                {% else %}
+                  <span class="meta">Disponibile</span>
+                {% endif %}
+              </div>
+              <div>
+                <h3>{{ item.title }}</h3>
+                <div class="meta">{% if item.price %}<strong>{{ item.price }}</strong>{% endif %}</div>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+
+        <p style="margin:10px 0 0;">
+          <a class="btn" href="{{ '/mercatino/' | relative_url }}">Vedi tutti</a>
+        </p>
+      </div>
+    {% endif %}
+  {% endif %}
+
+  <hr/>
+
+  {%- comment -%} Correlati (tag overlap) {%- endcomment -%}
+  {% if page.tags and page.tags.size > 0 %}
+    {% assign rel = "" | split: "" %}
+    {% for p in site.blog %}
+      {% if p.url != page.url and p.tags %}
+        {% assign overlap = false %}
+        {% for t in page.tags %}
+          {% if p.tags contains t %}
+            {% assign overlap = true %}
+          {% endif %}
+        {% endfor %}
+        {% if overlap %}
+          {% assign rel = rel | push: p %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    {% if rel.size > 0 %}
+      <h2 style="margin:0 0 10px;">Articoli correlati</h2>
+      <div class="post-list">
+        {% for post in rel limit: 3 %}
+          <a class="post-item" href="{{ post.url | relative_url }}" style="text-decoration:none">
+            <div class="thumb">
+              {% if post.thumbnail and post.thumbnail != "" %}
+                <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title | escape }}">
+              {% else %}
+                <span class="meta">{{ post.date | date: "%-d %b %Y" }}</span>
+              {% endif %}
+            </div>
+            <div>
+              <h3>{{ post.title }}</h3>
+              <div class="meta">{{ post.date | date: "%-d %b %Y" }}</div>
+              {% if post.excerpt %}
+                <div class="meta" style="margin-top:6px;">{{ post.excerpt | strip_html | truncate: 90 }}</div>
+              {% endif %}
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endif %}
+
+  <hr/>
+  <div class="meta">
+    <a href="{{ '/blog/' | relative_url }}">← Torna al Blog</a>
+  </div>
+</article>
