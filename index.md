@@ -63,16 +63,56 @@ layout: default
   </section>
 
   <aside class="card">
-  <img class="sidebar-logo" src="{{ site.logo_image | relative_url }}" alt="Chronodaddy">
+    <img class="sidebar-logo" src="{{ site.logo_image | relative_url }}" alt="Chronodaddy">
     <h2 style="margin:0 0 6px;">Chi sono</h2>
     <p class="subtitle" style="margin-bottom:12px;">
     </p>
-         Un papà appassionato di orologi. Qui trovi tutti i video pubblicati sul canale.
+    Un papà appassionato di orologi. Qui trovi tutti i video pubblicati sul canale.
 
     <hr/>
     <p style="margin:0;">
       <a class="btn" href="{{ '/contatti/' | relative_url }}">Contattami</a>
     </p>
+
+    {%- comment -%} ✅ QUI SOTTO: annunci mercatino disponibili {%- endcomment -%}
+    {% assign available = site.mercatino
+      | where_exp: "i", "i.status != 'venduto'"
+      | sort: "date_added"
+      | reverse
+    %}
+
+    {% if available.size > 0 %}
+      <hr/>
+      <h2 style="margin:0 0 10px;">Mercatino (disponibili)</h2>
+
+      <div class="post-list">
+        {% for item in available limit: 3 %}
+          <a class="post-item" href="{{ item.url | relative_url }}" style="text-decoration:none">
+            <div class="thumb">
+              {% if item.cover and item.cover != "" %}
+                <img src="{{ item.cover | relative_url }}" alt="{{ item.title | escape }}">
+              {% elsif item.images and item.images.size > 0 %}
+                <img src="{{ item.images[0] | relative_url }}" alt="{{ item.title | escape }}">
+              {% else %}
+                <span class="meta">Disponibile</span>
+              {% endif %}
+            </div>
+            <div>
+              <h3>{{ item.title }}</h3>
+              <div class="meta">
+                {% if item.price %}<strong>{{ item.price }}</strong>{% endif %}
+                {% if item.condition %} · {{ item.condition }}{% endif %}
+                {% if item.year %} · {{ item.year }}{% endif %}
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+
+      <p style="margin:10px 0 0;">
+        <a class="btn" href="{{ '/mercatino/' | relative_url }}">Vedi tutti</a>
+      </p>
+    {% endif %}
   </aside>
 </div>
 
