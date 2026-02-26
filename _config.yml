@@ -39,6 +39,11 @@ defaults:
       type: pages
     values:
       layout: page
+ -  scope:
+      path: "assets"
+    values:
+      sitemap: false
+
 
 # Exclude build artifacts / tooling
 exclude:
@@ -48,5 +53,8 @@ exclude:
   - package-lock.json
   - README.md
   - vendor
+  - assets/
+  - assets/certificati/
+  - assets/media-kit.pdf
 
  
