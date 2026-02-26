@@ -1,43 +1,53 @@
-<!doctype html>
-<html lang="it">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
-    <meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 | default: site.description }}" />
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
-    <link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS" href="{{ '/feed.xml' | relative_url }}">
-    {%- comment -%} SEO Mercatino (solo per layout mercatino) {%- endcomment -%}
-{% if page.layout == "mercatino" %}
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
 
+  {%- comment -%} Immagine principale (serve anche per OG) {%- endcomment -%}
   {%- assign merc_img = nil -%}
-  {%- if page.cover and page.cover != "" -%}
-    {%- assign merc_img = page.cover -%}
-  {%- elsif page.gallery and page.gallery.size > 0 -%}
-    {%- assign merc_img = page.gallery[0] -%}
+  {%- if page.layout == "mercatino" -%}
+    {%- if page.cover and page.cover != "" -%}
+      {%- assign merc_img = page.cover -%}
+    {%- elsif page.gallery and page.gallery.size > 0 -%}
+      {%- assign merc_img = page.gallery[0] -%}
+    {%- endif -%}
   {%- endif -%}
 
+  {%- comment -%} TITLE (uno solo) {%- endcomment -%}
   <title>
-    {% if page.seo_title %}{{ page.seo_title }}
-    {% else %}{{ page.title }} · Mercatino · {{ site.title }}{% endif %}
+    {%- if page.layout == "mercatino" and page.seo_title -%}
+      {{ page.seo_title }}
+    {%- elsif page.title -%}
+      {{ page.title }} · {{ site.title }}
+    {%- else -%}
+      {{ site.title }}
+    {%- endif -%}
   </title>
 
-  <meta name="description" content="{% if page.seo_description %}{{ page.seo_description | strip_html | escape }}{% else %}{{ page.title | escape }} in vendita su Chronodaddy Mercatino{% endif %}">
-  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  {%- comment -%} DESCRIPTION (una sola) {%- endcomment -%}
+  <meta name="description" content="{% if page.layout == 'mercatino' and page.seo_description %}{{ page.seo_description | strip_html | escape }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 | escape }}{% else %}{{ site.description | escape }}{% endif %}" />
 
-  {% if page.status == "venduto" %}
+  <link rel="canonical" href="{{ page.url | absolute_url }}" />
+
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS" href="{{ '/feed.xml' | relative_url }}">
+
+  {%- comment -%} Robots per venduti {%- endcomment -%}
+  {% if page.layout == "mercatino" and page.status == "venduto" %}
     <meta name="robots" content="noindex,follow">
   {% endif %}
 
-  <meta property="og:type" content="product">
-  <meta property="og:title" content="{{ page.title | escape }}">
-  <meta property="og:description" content="{% if page.seo_description %}{{ page.seo_description | strip_html | escape }}{% else %}{{ page.title | escape }} — Prezzo: {{ page.price | escape }}{% endif %}">
+  {%- comment -%} OpenGraph / Twitter {%- endcomment -%}
+  <meta property="og:title" content="{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}">
+  <meta property="og:description" content="{% if page.layout == 'mercatino' and page.seo_description %}{{ page.seo_description | strip_html | escape }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | truncate: 160 | escape }}{% else %}{{ site.description | escape }}{% endif %}">
   <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:type" content="{% if page.layout == 'mercatino' %}product{% else %}website{% endif %}">
   {% if merc_img %}
     <meta property="og:image" content="{{ merc_img | absolute_url }}">
   {% endif %}
   <meta name="twitter:card" content="summary_large_image">
 
+  {%- comment -%} JSON-LD solo per mercatino {%- endcomment -%}
+  {% if page.layout == "mercatino" %}
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -54,9 +64,8 @@
     }
   }
   </script>
-
-{% endif %}
-  </head>
+  {% endif %}
+</head>
   <body>
     {% include header.html %}
     <main class="container">
