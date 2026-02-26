@@ -54,6 +54,5 @@ exclude:
   - package-lock.json
   - README.md
   - vendor
-  - assets/
   - assets/certificati/
   - assets/media-kit.pdf
