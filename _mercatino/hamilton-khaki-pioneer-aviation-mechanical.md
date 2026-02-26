@@ -2,7 +2,10 @@
 title: "Hamilton Khaki Pioneer Aviation Mechanical"
 layout: mercatino
 price: "600,00 euro"
+price_value: 1290
+currency: "EUR"
 status: "disponibile"   # disponibile | venduto
+ref: "H76419941" 
 date_added: 2026-02-25 
 year: 2024
 condition: "Ottime condizioni"
@@ -10,6 +13,8 @@ box_papers: "Full set"
 movement: "Automatio H-50"
 diameter: "36mm"
 location: "Italia"
+seo_title: "Hamilton Khaki Pioneer Aviation Mechanical H76419941 | Chronodaddy Mercatino"
+seo_description: "Hamilton Khaki Pioneer Aviation Mechanical ref. H76419941, full set prezzo 600€."
 cover: "/assets/mercatino/hamilton-1.jpeg"
 gallery:
   - "/assets/mercatino/hamilton-1.jpeg"

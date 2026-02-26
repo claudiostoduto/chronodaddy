@@ -11,6 +11,12 @@ movement: "Automatico 9039"
 diameter: "39mm"
 location: "Italia"
 cover: "/assets/mercatino/htd-cocco-bello-1.jpeg"
+price: "600€"
+price_value: 600
+currency: "EUR"
+ref: "Cocco Bello"   # se c’è
+seo_title: "HTD Aquatic Cocco Bello | Chronodaddy Mercatino"
+seo_description: "LHTD Aquatic Cocco Bello, full set, condizioni perfette prezzo 600€."
 gallery:
   - "/assets/mercatino/htd-cocco-bello-1.jpeg"
   - "/assets/mercatino/htd-cocco-bello-2.jpeg"

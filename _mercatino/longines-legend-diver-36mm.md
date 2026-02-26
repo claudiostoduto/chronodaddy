@@ -10,6 +10,12 @@ box_papers: "Full set"
 movement: "Automatico L592"
 diameter: "36mm"
 location: "Italia"
+price: "1.700€"
+price_value: 1700
+currency: "EUR"
+ref: "L3.374.4.50.6"   # se c’è
+seo_title: "Longines Legend Diver 36mm L3.374.4.50.6 | Chronodaddy Mercatino"
+seo_description: "Longines Legend Diver 36mm ref. L3.374.4.50.6, full set, doppio cinturino, condizioni..., prezzo 1.700€."
 cover: "/assets/mercatino/longines-1.jpeg"
 gallery:
   - "/assets/mercatino/longines-1.jpeg"
