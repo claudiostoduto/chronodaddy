@@ -27,6 +27,9 @@ collections:
   mercatino:
     output: true
     permalink: /mercatino/:name/
+  blog:
+    output: true
+    permalink: /blog/:name/
 
 defaults:
   - scope:

@@ -113,6 +113,46 @@ layout: default
         <a class="btn" href="{{ '/mercatino/' | relative_url }}">Vedi tutti</a>
       </p>
     {% endif %}
+
+    {%- comment -%} Blog: ultimi 5 articoli dalla collection _blog {%- endcomment -%}
+{% assign latest_blog = site.blog | sort: "date" | reverse | slice: 0, 5 %}
+
+{% if latest_blog.size > 0 %}
+  <hr/>
+  <h2 style="margin:0 0 10px;">Ultimi articoli</h2>
+
+  <div class="post-list">
+    {% for post in latest_blog %}
+      <a class="post-item" href="{{ post.url | relative_url }}" style="text-decoration:none">
+        <div class="thumb">
+          {% if post.thumbnail and post.thumbnail != "" %}
+            <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title | escape }}">
+          {% else %}
+            <span class="meta">{{ post.date | date: "%-d %b %Y" }}</span>
+          {% endif %}
+        </div>
+
+        <div>
+          <h3>{{ post.title }}</h3>
+          <div class="meta">
+            {{ post.date | date: "%-d %b %Y" }}
+            {% if post.tags and post.tags.size > 0 %}
+              · {% for t in post.tags limit:3 %}#{{ t }} {% endfor %}
+            {% endif %}
+          </div>
+          {% if post.excerpt %}
+            <div class="meta" style="margin-top:6px;">{{ post.excerpt | strip_html | truncate: 95 }}</div>
+          {% endif %}
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+
+  <p style="margin:10px 0 0;">
+    <a class="btn" href="{{ '/blog/' | relative_url }}">Vedi tutti</a>
+  </p>
+{% endif %}
+
   </aside>
 </div>
 
