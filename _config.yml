@@ -1,8 +1,8 @@
 title: Chronodaddy
 tagline: Un papà appassionato di orologi
 description: "Notizie e due chiacchiere sul mondo degli orologi."
-url: ""  # GitHub Pages lo imposta automaticamente
-baseurl: ""  # se usi repository user/organization pages lascia vuoto
+url: "https://chronodaddy.it"
+baseurl: ""
 
 # Branding
 logo_text: "Chronodaddy"
@@ -19,7 +19,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
 
-# Collections (opzionale)
+# Collections
 collections:
   pages:
     output: true
@@ -34,16 +34,17 @@ defaults:
       type: posts
     values:
       layout: post
+
   - scope:
       path: ""
       type: pages
     values:
       layout: page
- -  scope:
+
+  - scope:
       path: "assets"
     values:
       sitemap: false
-
 
 # Exclude build artifacts / tooling
 exclude:
@@ -56,5 +57,3 @@ exclude:
   - assets/
   - assets/certificati/
   - assets/media-kit.pdf
-
- 
