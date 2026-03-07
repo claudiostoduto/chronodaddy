@@ -2,7 +2,7 @@
 title: "Longines Legend Diver 36mm"
 layout: mercatino
 price: "1700,00 euro"
-status: "disponibile"   # disponibile | venduto
+status: "venduto"   # disponibile | venduto
 date_added: 2026-02-23 
 year: 2023
 condition: "Ottime condizioni"
