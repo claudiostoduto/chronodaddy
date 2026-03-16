@@ -22,7 +22,6 @@ gallery:
   - "/assets/mercatino/htd-cocco-bello-2.jpeg"
   - "/assets/mercatino/htd-cocco-bello-3.jpeg"
   - "/assets/mercatino/htd-cocco-bello-5.jpeg"
-  - "/assets/mercatino/htd-cocco-bello-4.jpeg"
 slug: "htd-aquatic-cocco-bello"
 ---
 
@@ -76,3 +75,5 @@ Un diver contemporaneo con anima ricercata.
 📍 Visione su appuntamento.  
 📦 Spedizione assicurata disponibile.  
 🔒 Massima serietà. Ulteriori foto e informazioni su richiesta.
+
+Prodotto pre-produzione senza numero di serie. Quindi unico al mondo.
