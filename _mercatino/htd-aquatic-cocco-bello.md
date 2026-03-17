@@ -2,7 +2,7 @@
 title: "HTD Aquatic Cocco Bello"
 layout: mercatino
 price: "650,00 euro"
-status: "disponibile"   # disponibile | venduto
+status: "venduto"   # disponibile | venduto
 date_added: 2026-02-28 
 year: 2022
 condition: "Ottime condizioni"
