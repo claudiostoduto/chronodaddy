@@ -63,6 +63,16 @@ Un diver contemporaneo con anima ricercata.
 - Riserva di carica: circa 42 ore  
 - Lume: Super-LumiNova di ottima intensità  
 
+## 📦 Condizioni
+
+- Condizioni eccellenti  
+- Movimento funzionante perfettamente  
+- Vetro zaffiro in ottimo stato  
+- Lievi micro segni da normale utilizzo  
+- Corredo completo.
+
+Orologio sempre indossato con cura.
+
 ---
 
 ## Perché sceglierlo

@@ -72,7 +72,7 @@ Un diver puro, ma perfettamente utilizzabile ogni giorno.
 - Movimento preciso e affidabile  
 - Vetro in ottimo stato  
 - Normali micro segni da utilizzo sulla cassa  
-- Corredo completo se presente (box, garanzia, manuali)
+- Corredo completo (box, garanzia, manuali)
 
 Orologio sempre utilizzato con attenzione.
 

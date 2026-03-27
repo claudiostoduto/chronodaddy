@@ -95,7 +95,8 @@ Un pezzo per chi cerca qualcosa di diverso, con carattere e identità, lontano d
 
 HTD Hesagraph Cannoli, HTD Cannoli Gen 1, cronografo HTD, microbrand italiana, Seagull ST19, cronografo meccanico, orologio carica manuale, bicompax, racing chronograph, orologio collezione, limited edition, orologio uomo 40mm, zaffiro, microbrand luxury
 
+—
 
-📍 Visione su appuntamento.
-📦 Spedizione assicurata disponibile.
+📍 Visione su appuntamento.  
+📦 Spedizione assicurata disponibile.  
 🔒 Massima serietà. Ulteriori foto e informazioni su richiesta.
